@@ -1,0 +1,4 @@
+
+userboard/templates/* linguist-vendored
+userboard/static/* linguist-vendored
+static/* linguist-vendored
