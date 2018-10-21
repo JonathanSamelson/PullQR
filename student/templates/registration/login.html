@@ -36,21 +36,16 @@
 
 
 
-      <div class="row">
 
-        {% for student in context_list %}
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="{{ student.redirect_url }}"><img class="card-img-top" src="{{ student.photo_url }}" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="{{ student.redirect_url }}"> {{student.name}}</a>
-              </h4>
-              <p class="card-text">{{ student.description }}</p>
-            </div>
-          </div>
-        </div>
-        {%endfor%}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit">Login</button>
+</form>
+
+
+
 
       </div>
 
@@ -59,7 +54,6 @@
 
         <div class="py-5 jumbotron container bg-dark">
             <p class="m-0 text-center text-white">Computer Science 2018-2019</p>
-            <p class="text-center" ><a class="my-4 text-white" href="/accounts/login">My profile</a> </p>
             {% if user.is_authenticated %}
             <p class="text-center" ><a class=" text-white" href="/accounts/logout">Logout</a> </p>
             {% endif%}

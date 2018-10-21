@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Computer Science UCLouvain</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/4-col-portfolio.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading -->
+        <div class="jumbotron bg-dark">
+            <h1 class="my-4 text-center text-white">Computer Science
+                <small> Students UCLouvain</small>
+            </h1>
+        </div>
+
+
+                    <div class="container center">
+                        <form id="form-group" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" class="form-control" placeholder="Name" name="name"
+                                               value="{{ name }}">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <input class="form-control" name="description" placeholder="Description" value="{{ description }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Photo url</label>
+                                        <input type="text" name="photo_url" class="form-control" placeholder="Photo url" value="{{ photo_url }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Url redirection</label>
+                                        <input type="text" name="redirect" class="form-control" placeholder="Redirect url" value="{{ redirect_url }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+
+
+
+
+        <!-- Footer -->
+        <div class="py-5 jumbotron container bg-dark">
+            <p class="m-0 text-center text-white">Computer Science 2018-2019</p>
+            <p class="text-center" ><a class="my-4 text-white" href="{% url 'index' %}">Main page</a> </p>
+             {% if user.is_authenticated %}
+            <p class="text-center" ><a class=" text-white" href="/accounts/logout">Logout</a> </p>
+            <p class="text-center" ><a class=" text-white" href="/accounts/password">Change my password</a> </p>
+
+            {% endif%}
+        </div>
+    </div>
+    <!-- /.container -->
+
+
+
+      <!-- /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src=" {% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  </body>
+
+</html>
