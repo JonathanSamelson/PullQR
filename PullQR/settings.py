@@ -24,7 +24,6 @@ SECRET_KEY = "".join([random.choice(string.printable) for _ in range(24)])
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 

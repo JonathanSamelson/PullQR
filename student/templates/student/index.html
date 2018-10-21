@@ -36,7 +36,12 @@
 
 
 
-      <div class="row">
+      <div class="row" id="row">
+          <div class="col-lg-12">
+
+           <input type="text" id="myInput" class="form-control" onkeyup="search()" placeholder="Search for names.." title="Type in a name">
+              <br>
+          </div>
 
         {% for student in context_list %}
         <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
@@ -75,6 +80,27 @@
     <!-- Bootstrap core JavaScript -->
     <script src=" {% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+
+
+
+<script>
+function search() {
+    var input, filter, row, li, a, i, div;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    row = document.getElementById("row");
+    card = row.getElementsByClassName("portfolio-item");
+    for (i = 0; i < card.length; i++) {
+        a = card[i].getElementsByTagName("h4")[0].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            card[i].style.display = "";
+        } else {
+            card[i].style.display = "none";
+        }
+    }
+}
+</script>
 
   </body>
 
