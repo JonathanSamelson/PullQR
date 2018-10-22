@@ -20,6 +20,7 @@ def index(request):
 
     return render(request, 'student/index.html', {'context_list': context_list})
 
+
 @login_required
 def my(request):
     user = request.user

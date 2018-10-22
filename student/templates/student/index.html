@@ -2,103 +2,100 @@
 {% load static %}
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>Computer Science UCLouvain</title>
+        <title>Computer Science UCLouvain</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/4-col-portfolio.css' %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{% static 'css/4-col-portfolio.css' %}" rel="stylesheet">
 
-</head>
+    </head>
 
-<body>
+    <body>
+        <!-- Page Content -->
+        <div class="container">
 
-
-<!-- Page Content -->
-<div class="container">
-
-    <!-- Page Heading -->
-    <div class="jumbotron bg-dark">
-        <h1 class="my-4 text-center text-white">Computer Science
-            <small> Students UCLouvain</small>
-        </h1>
-    </div>
-
-
-    <div class="row" id="row">
-        <div class="col-lg-12">
-
-            <input type="text" id="myInput" class="form-control" onkeyup="search()" placeholder="Search for names.."
-                   title="Type in a name">
-            <br>
-        </div>
-
-        {% for student in context_list %}
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="{{ student.redirect_url }}"><img class="card-img-top" src="{{ student.photo_url }}" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="{{ student.redirect_url }}"> {{student.name}}</a>
-                    </h4>
-                    <p class="card-text">{{ student.description }}</p>
-                </div>
+            <!-- Page Heading -->
+            <div class="jumbotron bg-dark">
+                <h1 class="my-4 text-center text-white">Computer Science
+                    <small> Students UCLouvain</small>
+                </h1>
             </div>
+            <!-- End Page Heading -->
+
+
+            <div class="row" id="row">
+
+                <div class="col-lg-12">
+                    <input type="text" id="myInput" class="form-control" onkeyup="search()" placeholder="Search for names.."
+                           title="Type in a name">
+                    <br>
+                </div>
+
+                <!-- Listing Profiles -->
+                {% for student in context_list %}
+                <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+                    <div class="card h-100">
+                        <a href="{{ student.redirect_url }}"><img class="card-img-top" src="{{ student.photo_url }}" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="{{ student.redirect_url }}"> {{student.name}}</a>
+                            </h4>
+                            <p class="card-text">{{ student.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+                <!-- End Listing Profiles -->
+
+            </div>
+            <!-- End row -->
+
+            <!-- Footer -->
+            <div class="py-5 jumbotron container bg-dark">
+                <p class="m-0 text-center text-white">Computer Science 2018-2019</p>
+                <p class="text-center"><a class="my-4 text-white" href="/my">My profile</a></p>
+                {% if user.is_authenticated %}
+                    <p class="text-center"><a class=" text-white" href="/accounts/logout">Logout</a></p>
+                {% endif%}
+            </div>
+            <!-- End Footer -->
         </div>
-        {%endfor%}
+        <!-- /.container -->
 
-    </div>
-
-    <!-- /.row -->
-
-
-    <div class="py-5 jumbotron container bg-dark">
-        <p class="m-0 text-center text-white">Computer Science 2018-2019</p>
-        <p class="text-center"><a class="my-4 text-white" href="/my">My profile</a></p>
-        {% if user.is_authenticated %}
-        <p class="text-center"><a class=" text-white" href="/accounts/logout">Logout</a></p>
-        {% endif%}
-
-    </div>
-</div>
-<!-- /.container -->
-
-<!-- Footer -->
-
-<!-- /.container -->
-
-<!-- Bootstrap core JavaScript -->
-<script src=" {% static 'vendor/jquery/jquery.min.js' %}"></script>
-<script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src=" {% static 'vendor/jquery/jquery.min.js' %}"></script>
+        <script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 
-<script>
-function search() {
-    var input, filter, row, li, a, i, div;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    row = document.getElementById("row");
-    card = row.getElementsByClassName("portfolio-item");
-    for (i = 0; i < card.length; i++) {
-        a = card[i].getElementsByTagName("h4")[0].getElementsByTagName("a")[0];
-        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            card[i].style.display = "";
-        } else {
-            card[i].style.display = "none";
-        }
-    }
-}
+        <!-- Script for searching people-->
+        <script>
+            function search() {
+                var input, filter, row, li, a, i, div;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                row = document.getElementById("row");
+                card = row.getElementsByClassName("portfolio-item");
+                for (i = 0; i < card.length; i++) {
+                    a = card[i].getElementsByTagName("h4")[0].getElementsByTagName("a")[0];
+                    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        card[i].style.display = "";
+                    } else {
+                        card[i].style.display = "none";
+                    }
+                }
+            }
 
-</script>
+        </script>
 
-</body>
+        </body>
 
 </html>
