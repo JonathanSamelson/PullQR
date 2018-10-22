@@ -1,0 +1,3 @@
+student/templates/* linguist-vendored
+student/static/* linguist-vendored
+static/* linguist-vendored
