@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,71 +17,67 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'css/4-col-portfolio.css' %}" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
 
+<!-- Page Content -->
+<div class="container">
 
-    <!-- Page Content -->
-    <div class="container">
+    <!-- Page Heading -->
+    <div class="jumbotron bg-dark">
+        <h1 class="my-4 text-center text-white">Computer Science
+            <small> Students UCLouvain</small>
+        </h1>
+    </div>
 
-      <!-- Page Heading -->
-        <div class="jumbotron bg-dark">
-            <h1 class="my-4 text-center text-white">Computer Science
-                <small> Students UCLouvain</small>
-            </h1>
+
+    <div class="row" id="row">
+        <div class="col-lg-12">
+
+            <input type="text" id="myInput" class="form-control" onkeyup="search()" placeholder="Search for names.."
+                   title="Type in a name">
+            <br>
         </div>
-
-
-
-
-      <div class="row" id="row">
-          <div class="col-lg-12">
-
-           <input type="text" id="myInput" class="form-control" onkeyup="search()" placeholder="Search for names.." title="Type in a name">
-              <br>
-          </div>
 
         {% for student in context_list %}
         <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="{{ student.redirect_url }}"><img class="card-img-top" src="{{ student.photo_url }}" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="{{ student.redirect_url }}"> {{student.name}}</a>
-              </h4>
-              <p class="card-text">{{ student.description }}</p>
+            <div class="card h-100">
+                <a href="{{ student.redirect_url }}"><img class="card-img-top" src="{{ student.photo_url }}" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="{{ student.redirect_url }}"> {{student.name}}</a>
+                    </h4>
+                    <p class="card-text">{{ student.description }}</p>
+                </div>
             </div>
-          </div>
         </div>
         {%endfor%}
 
-      </div>
-
-      <!-- /.row -->
-
-
-        <div class="py-5 jumbotron container bg-dark">
-            <p class="m-0 text-center text-white">Computer Science 2018-2019</p>
-            <p class="text-center" ><a class="my-4 text-white" href="/accounts/login">My profile</a> </p>
-            {% if user.is_authenticated %}
-            <p class="text-center" ><a class=" text-white" href="/accounts/logout">Logout</a> </p>
-            {% endif%}
-
-        </div>
     </div>
-    <!-- /.container -->
 
-    <!-- Footer -->
-
-      <!-- /.container -->
-
-    <!-- Bootstrap core JavaScript -->
-    <script src=" {% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- /.row -->
 
 
+    <div class="py-5 jumbotron container bg-dark">
+        <p class="m-0 text-center text-white">Computer Science 2018-2019</p>
+        <p class="text-center"><a class="my-4 text-white" href="/my">My profile</a></p>
+        {% if user.is_authenticated %}
+        <p class="text-center"><a class=" text-white" href="/accounts/logout">Logout</a></p>
+        {% endif%}
+
+    </div>
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+
+<!-- /.container -->
+
+<!-- Bootstrap core JavaScript -->
+<script src=" {% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 
 <script>
@@ -100,8 +96,9 @@ function search() {
         }
     }
 }
+
 </script>
 
-  </body>
+</body>
 
 </html>

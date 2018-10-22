@@ -7,7 +7,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import update_session_auth_hash
 
 
-
 def index(request):
     students = UserProfile.objects.all()
     context_list = []
@@ -28,12 +27,14 @@ def my(request):
     student = UserProfile.objects.filter(user=user)[0]
 
     if request.method == "POST":
-        student.description = request.POST.get('description')
-        student.displayed_name = request.POST.get('name')
-        student.photo_url = request.POST.get('photo_url')
-        student.redirect_url = request.POST.get('redirect')
-        student.save()
-        messages.success(request, 'Your password was successfully updated!')
+        if(len(request.POST.get('description')) > 280 or len(request.POST.get('name')) > 26):
+            pass
+        else:
+            student.description = request.POST.get('description')
+            student.displayed_name = request.POST.get('name')
+            student.photo_url = request.POST.get('photo_url')
+            student.redirect_url = request.POST.get('redirect')
+            student.save()
 
     information = {
         'name': student.displayed_name,

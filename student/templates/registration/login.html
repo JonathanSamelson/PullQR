@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+{% load crispy_forms_tags %}
 {% load static %}
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,59 +18,54 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'css/4-col-portfolio.css' %}" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body>
-
-
-
-    <!-- Page Content -->
-    <div class="container">
-
-      <!-- Page Heading -->
-        <div class="jumbotron bg-dark">
-            <h1 class="my-4 text-center text-white">Computer Science
-                <small> Students UCLouvain</small>
-            </h1>
-        </div>
+<body>
 
 
+<!-- Page Content -->
+<div class="container">
 
-
-
-
-<form method="post">
-  {% csrf_token %}
-  {{ form }}
-  <button type="submit">Login</button>
-</form>
-
-
-
-
-      </div>
-
-      <!-- /.row -->
-
-
-        <div class="py-5 jumbotron container bg-dark">
-            <p class="m-0 text-center text-white">Computer Science 2018-2019</p>
-            {% if user.is_authenticated %}
-            <p class="text-center" ><a class=" text-white" href="/accounts/logout">Logout</a> </p>
-            {% endif%}
-
-        </div>
+    <!-- Page Heading -->
+    <div class="jumbotron bg-dark">
+        <h1 class="my-4 text-center text-white">Computer Science
+            <small> Students UCLouvain</small>
+        </h1>
     </div>
-    <!-- /.container -->
 
-    <!-- Footer -->
 
-      <!-- /.container -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src=" {% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <br>
 
-  </body>
+
+</div>
+
+<!-- /.row -->
+
+
+<div class="py-5 jumbotron container bg-dark">
+    <p class="m-0 text-center text-white">Computer Science 2018-2019</p>
+    {% if user.is_authenticated %}
+    <p class="text-center"><a class=" text-white" href="/accounts/logout">Logout</a></p>
+    {% endif%}
+
+</div>
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+
+<!-- /.container -->
+
+<!-- Bootstrap core JavaScript -->
+<script src=" {% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
 
 </html>
