@@ -17,9 +17,9 @@ def index(request):
             'photo_url': student.photo_url,
             'redirect_url': student.redirect_url
         })
+    context_list.sort(key= lambda k: k["name"])
 
     return render(request, 'student/index.html', {'context_list': context_list})
-
 
 @login_required
 def my(request):
@@ -28,14 +28,15 @@ def my(request):
     student = UserProfile.objects.filter(user=user)[0]
 
     if request.method == "POST":
-        if(len(request.POST.get('description')) > 280 or len(request.POST.get('name')) > 26):
-            pass
+        if len(request.POST.get('description')) > 180 or len(request.POST.get('name')) > 20:
+            messages.error(request, 'There are some error in your answer')
         else:
             student.description = request.POST.get('description')
             student.displayed_name = request.POST.get('name')
             student.photo_url = request.POST.get('photo_url')
             student.redirect_url = request.POST.get('redirect')
             student.save()
+            messages.add_message(request, messages.SUCCESS, 'Profile Updated !')
 
     information = {
         'name': student.displayed_name,
@@ -45,6 +46,7 @@ def my(request):
     }
     return render(request, 'student/my.html', information)
 
+
 @login_required
 def change_password(request):
     if request.method == 'POST':
@@ -52,8 +54,7 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('my')
+            messages.add_message(request, messages.SUCCESS, 'Password changed')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
