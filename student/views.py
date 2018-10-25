@@ -25,7 +25,7 @@ def index(request):
 def my(request):
     user = request.user
 
-    student = UserProfile.objects.filter(user=user)[0]
+    student = UserProfile.objects.get(user=user)
 
     if request.method == "POST":
         if len(request.POST.get('description')) > 180 or len(request.POST.get('name')) > 20:
