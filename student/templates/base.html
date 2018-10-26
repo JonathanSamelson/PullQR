@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Computer Science UCLouvain</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/4-col-portfolio.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading -->
+    <div class="jumbotron bg-dark">
+        <img src="{%static 'images/logo_blanc.png' %}" style="display:block;
+    margin-left:auto;
+    margin-right:auto;" class="img-fluid" width="170vh"/>
+        <h1 class="my-4 text-center text-white"> Computer Science
+            <small> Students</small>
+        </h1>
+    </div>
+    <!-- End Page Heading -->
+
+
+    {% block content %}
+
+    {% endblock content%}
+
+
+    <br>
+
+    <!-- Footer -->
+    <div class="py-5 jumbotron container bg-dark">
+        <nav class="nav justify-content-center">
+            <a class="nav-link text-light {% block index %} {% endblock index %}" href="{% url 'index' %}">Index</a>
+            <a class="nav-link text-light {% block my %} {% endblock my %}" href="{% url 'my' %} ">My Profile</a>
+            {% if user.is_authenticated %}
+            <a class="nav-link text-light {% block password %} {% endblock password %}" href="{% url 'password' %}">Change my password</a>
+            <a class="nav-link text-light {% block logout %} {% endblock logout %}" href="/accounts/logout">Logout</a>
+            {% else %}
+            <a class="nav-link text-light {% block signup %} {% endblock signup %}" href="{% url 'signup' %}">Signup</a>
+            {% endif%}
+
+        </nav>
+        <br>
+        <p class="m-0 text-center text-white">Computer Science 2018-2019</p>
+
+
+
+    </div>
+    <!-- End Footer -->
+</div>
+<!-- End Page Content -->
+
+
+<!-- Bootstrap core JavaScript -->
+<script src=" {% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>
