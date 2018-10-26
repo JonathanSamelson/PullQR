@@ -108,7 +108,7 @@ def signup(request):
                                                           'type': "alert-success",
                                                           'message': "Please confirm your email address to complete the registration"})
     else:
-        if request.user:
+        if request.user.is_authenticated:
             return redirect("my")
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
