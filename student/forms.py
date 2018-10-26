@@ -14,6 +14,7 @@ class SignupForm(UserCreationForm):
 
     def clean_email(self):
         data = self.cleaned_data['email']
+        data = data.lower()
         domain = data.split('@')[1]
         domain_list = ["student.uclouvain.be"]
 

@@ -41,14 +41,14 @@ def my(request):
     except ObjectDoesNotExist:
         userprofile = UserProfile()
         userprofile.user = user
-        userprofile.redirect_url="www.sinfstudent.be"
+        userprofile.redirect_url="http://www.sinfstudent.be"
         userprofile.photo_url = "https://gladstoneentertainment.com/wp-content/uploads/2018/05/avatar-placeholder.gif"
-        userprofile.displayed_name = user.last_name + " " + user.first_name
+        userprofile.displayed_name = user.first_name + " " + user.last_name
         userprofile.save()
         student = UserProfile.objects.get(user=user)
 
     if request.method == "POST":
-        if len(request.POST.get('description')) > 180 or len(request.POST.get('name')) > 20:
+        if len(request.POST.get('description')) > 120 or len(request.POST.get('name')) > 20:
             messages.error(request, 'There are some error in your answer')
         else:
             student.description = request.POST.get('description')
