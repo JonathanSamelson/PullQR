@@ -56,4 +56,9 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
+# Contribute
+
+Do not hesitate to contribute !
+Fork this repository and pull request your change ! 
+
 
